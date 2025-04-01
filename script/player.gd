@@ -1,11 +1,12 @@
 extends CharacterBody3D
 
 
-const SPEED = 200.0
+const SPEED = 300.0
 const JUMP_VELOCITY = 10.0
 @onready var animator = get_node("gdbot/AnimationPlayer") as AnimationPlayer
 @onready var coins_container: HBoxContainer = $"../HUD/coins_container"
 var coins := 0
+var is_dead := false
 
 #@export var view : Node3D
 var gravity = 0
@@ -38,16 +39,20 @@ func handle_input(delta):
 	velocity = input * SPEED * delta
 	
 func handle_animations():
-	if is_on_floor():
+	if not is_dead:
+		if is_on_floor():
 		#if abs(velocity.x) > 1 or abs(velocity.z) > 1:
 			#animator.play("run", 0.3)
 		#else:
 			animator.play("run", 0.3)
+		else:
+			animator.play("jump", 0.3)
+			
+		if not is_on_floor() and gravity > 2:
+			animator.play("fall", 0.3)
 	else:
-		animator.play("jump", 0.3)
-		
-	if not is_on_floor() and gravity > 2:
-		animator.play("fall", 0.3)
+		get_parent().get_node("GameOver").visible = true
+		get_tree().paused = true
 
 func apply_gravity(delta):
 	if not is_on_floor():

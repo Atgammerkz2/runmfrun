@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgxqylswsrorh"]
+
+[ext_resource type="Shader" path="res://shaders/menu.gdshader" id="1_mbwsk"]
+[ext_resource type="Script" path="res://script/game_over.gd" id="1_swe8n"]
+[ext_resource type="FontFile" uid="uid://bm4yvlwukfrwy" path="res://font/LuckiestGuy-Regular.ttf" id="2_ovdrq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uttun"]
+shader = ExtResource("1_mbwsk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uj8vr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41duf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62g3f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yo8ak"]
+
+[sub_resource type="Theme" id="Theme_jdptx"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 0, 1)
+Button/colors/font_hover_color = Color(1, 1, 0, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_uj8vr")
+Button/styles/hover = SubResource("StyleBoxEmpty_41duf")
+Button/styles/normal = SubResource("StyleBoxEmpty_62g3f")
+Button/styles/pressed = SubResource("StyleBoxEmpty_yo8ak")
+
+[node name="GameOver" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_swe8n")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_uttun")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="menu_gameover" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = -51.0
+offset_right = 226.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="retry_btn" type="Button" parent="menu_gameover"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_jdptx")
+theme_override_fonts/font = ExtResource("2_ovdrq")
+theme_override_font_sizes/font_size = 48
+text = "Tentar Novamente"
+
+[node name="quit_btn" type="Button" parent="menu_gameover"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_jdptx")
+theme_override_fonts/font = ExtResource("2_ovdrq")
+theme_override_font_sizes/font_size = 48
+text = "Sair do Jogo"
+
+[connection signal="pressed" from="menu_gameover/retry_btn" to="." method="_on_retry_btn_pressed"]
+[connection signal="pressed" from="menu_gameover/quit_btn" to="." method="_on_quit_btn_pressed"]

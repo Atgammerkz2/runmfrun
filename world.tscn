@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6ebt8ihnhveb"]
+[gd_scene load_steps=14 format=3 uid="uid://b6ebt8ihnhveb"]
 
 [ext_resource type="Texture2D" uid="uid://ccwws701r70t2" path="res://models/skybox.jpg" id="1_n6ojx"]
 [ext_resource type="Script" path="res://script/player.gd" id="1_r5yp8"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://btmik8ognggaj" path="res://prefab/coin.tscn" id="4_awvla"]
 [ext_resource type="PackedScene" uid="uid://jiypjky1ack4" path="res://terrain_controller.tscn" id="4_taniw"]
 [ext_resource type="Script" path="res://script/coins_container.gd" id="5_30rer"]
+[ext_resource type="FontFile" uid="uid://bm4yvlwukfrwy" path="res://font/LuckiestGuy-Regular.ttf" id="7_tkt8q"]
+[ext_resource type="PackedScene" uid="uid://dgxqylswsrorh" path="res://prefab/game_over.tscn" id="8_c3chk"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yfrrh"]
 panorama = ExtResource("1_n6ojx")
@@ -23,10 +25,6 @@ height = 1.66566
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_da2ot"]
 data = PackedVector3Array(-5, 2.5, 0.25, 5, 2.5, 0.25, -5, -2.5, 0.25, 5, 2.5, 0.25, 5, -2.5, 0.25, -5, -2.5, 0.25, 5, 2.5, -0.25, -5, 2.5, -0.25, 5, -2.5, -0.25, -5, 2.5, -0.25, -5, -2.5, -0.25, 5, -2.5, -0.25, 5, 2.5, 0.25, 5, 2.5, -0.25, 5, -2.5, 0.25, 5, 2.5, -0.25, 5, -2.5, -0.25, 5, -2.5, 0.25, -5, 2.5, -0.25, -5, 2.5, 0.25, -5, -2.5, -0.25, -5, 2.5, 0.25, -5, -2.5, 0.25, -5, -2.5, -0.25, 5, 2.5, 0.25, -5, 2.5, 0.25, 5, 2.5, -0.25, -5, 2.5, 0.25, -5, 2.5, -0.25, 5, 2.5, -0.25, -5, -2.5, 0.25, 5, -2.5, 0.25, -5, -2.5, -0.25, 5, -2.5, 0.25, 5, -2.5, -0.25, -5, -2.5, -0.25)
-
-[sub_resource type="SystemFont" id="SystemFont_f6vk3"]
-font_names = PackedStringArray("Comic Sans MS")
-font_weight = 999
 
 [node name="World" type="Node3D"]
 
@@ -86,7 +84,9 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="HUD/coins_container/SubViewportContainer"]
 own_world_3d = true
 transparent_bg = true
+handle_input_locally = false
 size = Vector2i(96, 96)
+render_target_update_mode = 4
 
 [node name="coin_holder" type="Node3D" parent="HUD/coins_container/SubViewportContainer/SubViewport"]
 
@@ -104,13 +104,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -144.0
-offset_top = -2.0
-offset_right = 3.0
-offset_bottom = 107.0
+offset_left = -140.0
+offset_top = 6.0
+offset_right = 7.0
+offset_bottom = 108.0
 grow_horizontal = 0
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = SubResource("SystemFont_f6vk3")
+theme_override_fonts/font = ExtResource("7_tkt8q")
 theme_override_font_sizes/font_size = 64
 text = "0"
 vertical_alignment = 1
+
+[node name="GameOver" parent="." instance=ExtResource("8_c3chk")]
+visible = false
