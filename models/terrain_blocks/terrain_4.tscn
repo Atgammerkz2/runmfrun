@@ -3,7 +3,7 @@
 [ext_resource type="MeshLibrary" uid="uid://cqiuj7ymqwls8" path="res://mesh_library.tres" id="1_kr0fj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_20r6s"]
-size = Vector2(10, 13)
+size = Vector2(10, 12)
 
 [node name="terrain_0" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_20r6s")

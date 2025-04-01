@@ -51,5 +51,7 @@ data = PackedVector3Array(-0.2056, 1, -0.4793, -0.2261, 0.875, -0.5272, 0.2716, 
 mesh = SubResource("ArrayMesh_n46kh")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-corner"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-corner/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3evvl")

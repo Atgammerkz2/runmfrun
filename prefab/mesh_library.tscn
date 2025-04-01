@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://b8pk77nu64luo"]
+[gd_scene load_steps=11 format=4 uid="uid://b8pk77nu64luo"]
 
 [ext_resource type="PackedScene" uid="uid://cwd41s6etnw5c" path="res://models/assets/terrain/block-grass-edge.tscn" id="2_p2qov"]
 [ext_resource type="PackedScene" uid="uid://b1jeteyhr1o0h" path="res://models/assets/terrain/block-grass-corner.tscn" id="3_d6ocv"]
 [ext_resource type="PackedScene" uid="uid://4c17i5fkksb3" path="res://models/assets/terrain/block-grass-overhang-long.tscn" id="4_7g2l7"]
 [ext_resource type="Texture2D" uid="uid://cfcd0aq8da5jo" path="res://models/assets/Textures/colormap.png" id="5_k066s"]
 [ext_resource type="PackedScene" uid="uid://4201k3btyfov" path="res://models/assets/terrain/block-grass-overhang-edge.tscn" id="5_kmf8k"]
+[ext_resource type="PackedScene" uid="uid://cnfq8lpfuojyp" path="res://models/assets/itens/fence-straight.tscn" id="6_7bfgl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mlum"]
 resource_name = "colormap"
@@ -73,3 +74,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass-large/block-grass-large/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hr10e")
+
+[node name="fence-straight2" parent="." instance=ExtResource("6_7bfgl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.58548, 0, 0)
