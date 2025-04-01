@@ -5,7 +5,7 @@ const SPEED = 200.0
 const JUMP_VELOCITY = 10.0
 @onready var animator = get_node("gdbot/AnimationPlayer") as AnimationPlayer
 
-@export var view : Node3D
+#@export var view : Node3D
 var gravity = 0
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -23,15 +23,15 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if Vector2(velocity.z, velocity.x).length() > 0:
-		rotation_direction = Vector2(velocity.z, velocity.x).angle()
-	rotation.y = lerp_angle(rotation.y, -rotation_direction, delta * 10)
+	#if Vector2(velocity.z, velocity.x).length() > 0:
+	#	rotation_direction = Vector2(velocity.z, velocity.x).angle()
+	#rotation.y = lerp_angle(rotation.y, rotation_direction, delta * 10)
 
 func handle_input(delta):
 	var input := Vector3.ZERO
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_forward", "move_backward")
-	input = input.rotated(Vector3.UP, view.rotation.y).normalized()
+	#input = input.rotated(Vector3.UP, rotation.y).normalized()
 	
 	velocity = input * SPEED * delta
 	
