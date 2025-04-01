@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6ebt8ihnhveb"]
+
+[ext_resource type="Script" path="res://script/player.gd" id="1_r5yp8"]
+[ext_resource type="Script" path="res://script/view.gd" id="1_y6t6m"]
+[ext_resource type="PackedScene" uid="uid://c4fba1hyqkstw" path="res://models/actors/gdquest_gdbot/gdbot.glb" id="1_yykbg"]
+[ext_resource type="PackedScene" uid="uid://btmik8ognggaj" path="res://prefab/coin.tscn" id="4_awvla"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_680l3"]
+
+[sub_resource type="Sky" id="Sky_eoupn"]
+sky_material = SubResource("ProceduralSkyMaterial_680l3")
+
+[sub_resource type="Environment" id="Environment_0imuc"]
+background_mode = 2
+sky = SubResource("Sky_eoupn")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6cwnj"]
+radius = 0.274315
+height = 1.66566
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2ky1a"]
+data = PackedVector3Array(-50, 0.25, 10, 50, 0.25, 10, -50, -0.25, 10, 50, 0.25, 10, 50, -0.25, 10, -50, -0.25, 10, 50, 0.25, -10, -50, 0.25, -10, 50, -0.25, -10, -50, 0.25, -10, -50, -0.25, -10, 50, -0.25, -10, 50, 0.25, 10, 50, 0.25, -10, 50, -0.25, 10, 50, 0.25, -10, 50, -0.25, -10, 50, -0.25, 10, -50, 0.25, -10, -50, 0.25, 10, -50, -0.25, -10, -50, 0.25, 10, -50, -0.25, 10, -50, -0.25, -10, 50, 0.25, 10, -50, 0.25, 10, 50, 0.25, -10, -50, 0.25, 10, -50, 0.25, -10, 50, 0.25, -10, -50, -0.25, 10, 50, -0.25, 10, -50, -0.25, -10, 50, -0.25, 10, 50, -0.25, -10, -50, -0.25, -10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_87p58"]
+size = Vector3(100, 0.5, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2qsa"]
+albedo_color = Color(0.296963, 0.0551791, 2.40654e-08, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="camera_pivot" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_y6t6m")
+target = NodePath("../Player")
+zoom_minimum = 4
+zoom_maximum = 2
+min_rotation_x = -20
+
+[node name="Camera" type="Camera3D" parent="camera_pivot"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0imuc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.145875, 0.989303, 0, -0.989303, 0.145875, 0, 2.5267, 6.6789)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("view")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_r5yp8")
+view = NodePath("../camera_pivot")
+
+[node name="Colisao_Player" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(0.999633, 0, -0.0270842, 0, 1, 0, 0.0270842, 0, 0.999633, 0, 0.794155, 0)
+shape = SubResource("CapsuleShape3D_6cwnj")
+
+[node name="gdbot" parent="Player" instance=ExtResource("1_yykbg")]
+transform = Transform3D(-0.989344, 0, 0.1456, 0, 1, 0, -0.1456, 0, -0.989344, 0, 0, 0)
+
+[node name="Piso" type="StaticBody3D" parent="."]
+
+[node name="Colisao_Piso" type="CollisionShape3D" parent="Piso"]
+shape = SubResource("ConcavePolygonShape3D_2ky1a")
+
+[node name="Mesh_Piso" type="MeshInstance3D" parent="Piso"]
+mesh = SubResource("BoxMesh_87p58")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_d2qsa")
+
+[node name="coin" parent="." instance=ExtResource("4_awvla")]
