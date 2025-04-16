@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6ebt8ihnhveb"]
+[gd_scene load_steps=23 format=3 uid="uid://b6ebt8ihnhveb"]
 
 [ext_resource type="Texture2D" uid="uid://ccwws701r70t2" path="res://models/skybox.jpg" id="1_n6ojx"]
 [ext_resource type="Script" path="res://script/player.gd" id="1_r5yp8"]
@@ -6,8 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://btmik8ognggaj" path="res://prefab/coin.tscn" id="4_awvla"]
 [ext_resource type="PackedScene" uid="uid://jiypjky1ack4" path="res://terrain_controller.tscn" id="4_taniw"]
 [ext_resource type="Script" path="res://script/coins_container.gd" id="5_30rer"]
+[ext_resource type="PackedScene" uid="uid://b245kralgy0k8" path="res://models/terrain_blocks/terrain_1.tscn" id="7_bf68j"]
 [ext_resource type="FontFile" uid="uid://bm4yvlwukfrwy" path="res://font/LuckiestGuy-Regular.ttf" id="7_tkt8q"]
 [ext_resource type="PackedScene" uid="uid://dgxqylswsrorh" path="res://prefab/game_over.tscn" id="8_c3chk"]
+[ext_resource type="PackedScene" uid="uid://cvb328e726u34" path="res://models/terrain_blocks/terrain_2.tscn" id="8_og6mr"]
+[ext_resource type="PackedScene" uid="uid://ilox14xe455v" path="res://models/terrain_blocks/terrain_3.tscn" id="9_wllgb"]
+[ext_resource type="PackedScene" uid="uid://1ysga1taian6" path="res://models/terrain_blocks/terrain_0.tscn" id="9_yu1oe"]
+[ext_resource type="PackedScene" uid="uid://dpdetbjc5g56s" path="res://models/terrain_blocks/terrain_4.tscn" id="10_ee0ap"]
+[ext_resource type="Texture2D" uid="uid://b2pwgquh4l423" path="res://models/assets/Buttons/ui_buttons_arrow_left_NORMAL.png" id="13_wglpa"]
+[ext_resource type="Texture2D" uid="uid://cob6mp0kb41c8" path="res://models/assets/Buttons/ui_buttons_arrow_left_PRESSED.png" id="14_2ru1k"]
+[ext_resource type="Texture2D" uid="uid://cf37fbawniu2n" path="res://models/assets/Buttons/ui_jump_transparent.png" id="15_heva6"]
+[ext_resource type="Texture2D" uid="uid://dgtnd502hc64h" path="res://models/assets/Buttons/ui_buttons_arrow_right_NORMAL.png" id="15_xqlml"]
+[ext_resource type="Texture2D" uid="uid://cjnfu2tnu7y2y" path="res://models/assets/Buttons/ui_buttons_arrow_right_PRESSED.png" id="16_j27tb"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yfrrh"]
 panorama = ExtResource("1_n6ojx")
@@ -22,9 +32,6 @@ sky = SubResource("Sky_eoupn")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6cwnj"]
 radius = 0.274315
 height = 1.66566
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_da2ot"]
-data = PackedVector3Array(-5, 2.5, 0.25, 5, 2.5, 0.25, -5, -2.5, 0.25, 5, 2.5, 0.25, 5, -2.5, 0.25, -5, -2.5, 0.25, 5, 2.5, -0.25, -5, 2.5, -0.25, 5, -2.5, -0.25, -5, 2.5, -0.25, -5, -2.5, -0.25, 5, -2.5, -0.25, 5, 2.5, 0.25, 5, 2.5, -0.25, 5, -2.5, 0.25, 5, 2.5, -0.25, 5, -2.5, -0.25, 5, -2.5, 0.25, -5, 2.5, -0.25, -5, 2.5, 0.25, -5, -2.5, -0.25, -5, 2.5, 0.25, -5, -2.5, 0.25, -5, -2.5, -0.25, 5, 2.5, 0.25, -5, 2.5, 0.25, 5, 2.5, -0.25, -5, 2.5, 0.25, -5, 2.5, -0.25, 5, 2.5, -0.25, -5, -2.5, 0.25, 5, -2.5, 0.25, -5, -2.5, -0.25, 5, -2.5, 0.25, 5, -2.5, -0.25, -5, -2.5, -0.25)
 
 [node name="World" type="Node3D"]
 
@@ -49,13 +56,8 @@ transform = Transform3D(-0.989344, 0, 0.1456, 0, 1, 0, -0.1456, 0, -0.989344, 0,
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.926712, 0.375771, 0, -0.375771, 0.926712, 0, 1.81999, 2.91336)
 
-[node name="Limite_Start" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01733, 1.80302, 5.91655)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Limite_Start"]
-shape = SubResource("ConcavePolygonShape3D_da2ot")
-
 [node name="TerrainController" parent="." instance=ExtResource("4_taniw")]
+terrain_block_scenes = Array[PackedScene]([ExtResource("9_yu1oe"), ExtResource("7_bf68j"), ExtResource("8_og6mr"), ExtResource("9_wllgb"), ExtResource("10_ee0ap")])
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -114,6 +116,28 @@ theme_override_fonts/font = ExtResource("7_tkt8q")
 theme_override_font_sizes/font_size = 64
 text = "0"
 vertical_alignment = 1
+
+[node name="controls" type="CanvasLayer" parent="HUD"]
+
+[node name="btn_left" type="TouchScreenButton" parent="HUD/controls"]
+position = Vector2(11, 454)
+scale = Vector2(5.03125, 5.5625)
+texture_normal = ExtResource("13_wglpa")
+texture_pressed = ExtResource("14_2ru1k")
+action = "move_left"
+
+[node name="btn_left2" type="TouchScreenButton" parent="HUD/controls"]
+position = Vector2(203, 456)
+scale = Vector2(23.5625, 5.5625)
+texture_normal = ExtResource("15_heva6")
+action = "jump"
+
+[node name="btn_right" type="TouchScreenButton" parent="HUD/controls"]
+position = Vector2(975, 454)
+scale = Vector2(5.03125, 5.5625)
+texture_normal = ExtResource("15_xqlml")
+texture_pressed = ExtResource("16_j27tb")
+action = "move_right"
 
 [node name="GameOver" parent="." instance=ExtResource("8_c3chk")]
 visible = false

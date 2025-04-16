@@ -1,11 +1,5 @@
 extends Node3D
 class_name TerrainController
-## This builds and operates the terrain "conveyor belt"
-##
-## A set of randomly choosen terrain blocks is rendered to the viewport.
-## As the game played the terrian is moved in the posative Z direction.
-## When a given block passes behind this node it is removed and a new block
-## is added to the far end of the conveyor
 
 ## Holds the catalog of loaded terrian block scenes
 var TerrainBlocks: Array = []
@@ -14,18 +8,22 @@ var terrain_belt: Array[MeshInstance3D] = []
 @export var terrain_velocity: float = 10.0
 ## The number of blocks to keep rendered to the viewport
 @export var num_terrain_blocks = 4
-## Path to directory holding the terrain block scenes
-@export_dir var terrian_blocks_path = "res://models/terrain_blocks"
 
+# Substitua o @export_dir por um array de cenas pré-carregadas
+@export var terrain_block_scenes: Array[PackedScene] = []
 
 func _ready() -> void:
-	_load_terrain_scenes(terrian_blocks_path)
+	# Verifica se há cenas carregadas via export
+	if terrain_block_scenes.size() == 0:
+		push_error("Nenhuma cena de terreno foi atribuída ao array terrain_block_scenes!")
+		return
+	
+	TerrainBlocks = terrain_block_scenes
 	_init_blocks(num_terrain_blocks)
 
-
+# O resto do código permanece o mesmo...
 func _physics_process(delta: float) -> void:
 	_progress_terrain(delta)
-
 
 func _init_blocks(number_of_blocks: int) -> void:
 	for block_index in number_of_blocks:
@@ -36,7 +34,6 @@ func _init_blocks(number_of_blocks: int) -> void:
 			_append_to_far_edge(terrain_belt[block_index-1], block)
 		add_child(block)
 		terrain_belt.append(block)
-
 
 func _progress_terrain(delta: float) -> void:
 	for block in terrain_belt:
@@ -52,13 +49,5 @@ func _progress_terrain(delta: float) -> void:
 		terrain_belt.append(block)
 		first_terrain.queue_free()
 
-
 func _append_to_far_edge(target_block: MeshInstance3D, appending_block: MeshInstance3D) -> void:
 	appending_block.position.z = target_block.position.z - target_block.mesh.size.y/2 - appending_block.mesh.size.y/2
-
-
-func _load_terrain_scenes(target_path: String) -> void:
-	var dir = DirAccess.open(target_path)
-	for scene_path in dir.get_files():
-		print("Loading terrian block scene: " + target_path + "/" + scene_path)
-		TerrainBlocks.append(load(target_path + "/" + scene_path))
