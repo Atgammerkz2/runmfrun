@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6ebt8ihnhveb"]
+[gd_scene load_steps=24 format=3 uid="uid://b6ebt8ihnhveb"]
 
 [ext_resource type="Texture2D" uid="uid://ccwws701r70t2" path="res://models/skybox.jpg" id="1_n6ojx"]
-[ext_resource type="Script" path="res://script/player.gd" id="1_r5yp8"]
+[ext_resource type="Script" uid="uid://c3plxv74lsy0k" path="res://script/player.gd" id="1_r5yp8"]
 [ext_resource type="PackedScene" uid="uid://c4fba1hyqkstw" path="res://models/actors/gdquest_gdbot/gdbot.glb" id="1_yykbg"]
 [ext_resource type="PackedScene" uid="uid://btmik8ognggaj" path="res://prefab/coin.tscn" id="4_awvla"]
 [ext_resource type="PackedScene" uid="uid://jiypjky1ack4" path="res://terrain_controller.tscn" id="4_taniw"]
-[ext_resource type="Script" path="res://script/coins_container.gd" id="5_30rer"]
+[ext_resource type="Script" uid="uid://cpjm0tntniif0" path="res://script/coins_container.gd" id="5_30rer"]
 [ext_resource type="PackedScene" uid="uid://b245kralgy0k8" path="res://models/terrain_blocks/terrain_1.tscn" id="7_bf68j"]
 [ext_resource type="FontFile" uid="uid://bm4yvlwukfrwy" path="res://font/LuckiestGuy-Regular.ttf" id="7_tkt8q"]
 [ext_resource type="PackedScene" uid="uid://dgxqylswsrorh" path="res://prefab/game_over.tscn" id="8_c3chk"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cf37fbawniu2n" path="res://models/assets/Buttons/ui_jump_transparent.png" id="15_heva6"]
 [ext_resource type="Texture2D" uid="uid://dgtnd502hc64h" path="res://models/assets/Buttons/ui_buttons_arrow_right_NORMAL.png" id="15_xqlml"]
 [ext_resource type="Texture2D" uid="uid://cjnfu2tnu7y2y" path="res://models/assets/Buttons/ui_buttons_arrow_right_PRESSED.png" id="16_j27tb"]
+[ext_resource type="Script" uid="uid://s5ugrpk4rfw4" path="res://addons/cardboard_vr/scripts/cardboard_vr_camera.gd" id="19_cbp6q"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yfrrh"]
 panorama = ExtResource("1_n6ojx")
@@ -53,8 +54,12 @@ shape = SubResource("CapsuleShape3D_6cwnj")
 [node name="gdbot" parent="Player" instance=ExtResource("1_yykbg")]
 transform = Transform3D(-0.989344, 0, 0.1456, 0, 1, 0, -0.1456, 0, -0.989344, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.926712, 0.375771, 0, -0.375771, 0.926712, 0, 1.81999, 2.91336)
+[node name="CardboardVRCamera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61846, 4.02456)
+script = ExtResource("19_cbp6q")
+RotateParent = false
+EyesSeparation = 0.5
+metadata/_custom_type_script = "uid://s5ugrpk4rfw4"
 
 [node name="TerrainController" parent="." instance=ExtResource("4_taniw")]
 terrain_block_scenes = Array[PackedScene]([ExtResource("9_yu1oe"), ExtResource("7_bf68j"), ExtResource("8_og6mr"), ExtResource("9_wllgb"), ExtResource("10_ee0ap")])

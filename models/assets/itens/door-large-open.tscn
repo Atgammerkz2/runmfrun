@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://dimd3n7nmfc1m"]
 
-[ext_resource type="Script" path="res://script/door_large_open.gd" id="1_4r4is"]
+[ext_resource type="Script" uid="uid://bl5blqkcf3od0" path="res://script/door_large_open.gd" id="1_4r4is"]
 [ext_resource type="Texture2D" uid="uid://cfcd0aq8da5jo" path="res://models/assets/Textures/colormap.png" id="1_n6xb1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swaak"]

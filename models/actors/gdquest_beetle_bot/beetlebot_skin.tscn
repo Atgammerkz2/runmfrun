@@ -1,10 +1,12 @@
 [gd_scene load_steps=39 format=3 uid="uid://bpjqcswabdtyb"]
 
-[ext_resource type="Script" path="res://addons/gdquest_beetle_bot/beetlebot_skin.gd" id="1_gujli"]
-[ext_resource type="PackedScene" uid="uid://dbqoj8oam1dsg" path="res://addons/gdquest_beetle_bot/model/beetle_bot_fused.glb" id="1_r7amh"]
-[ext_resource type="Material" uid="uid://dg5h8p8fu3mhh" path="res://addons/gdquest_beetle_bot/materials/beetlebot_eyes_mat.tres" id="3_nbf2s"]
-[ext_resource type="Material" uid="uid://h2e57pyy6lu4" path="res://addons/gdquest_beetle_bot/materials/beetlebot_lights_mat.tres" id="4_4158y"]
-[ext_resource type="AnimationLibrary" uid="uid://812ebxlqmeit" path="res://addons/gdquest_beetle_bot/model/custom/custom_lib.res" id="5_y1ouw"]
+[ext_resource type="PackedScene" uid="uid://dbqoj8oam1dsg" path="res://models/actors/gdquest_beetle_bot/model/beetle_bot_fused.glb" id="1_r7amh"]
+[ext_resource type="Material" uid="uid://dg5h8p8fu3mhh" path="res://models/actors/gdquest_beetle_bot/materials/beetlebot_eyes_mat.tres" id="3_nbf2s"]
+[ext_resource type="Material" uid="uid://h2e57pyy6lu4" path="res://models/actors/gdquest_beetle_bot/materials/beetlebot_lights_mat.tres" id="4_4158y"]
+[ext_resource type="AnimationLibrary" uid="uid://812ebxlqmeit" path="res://models/actors/gdquest_beetle_bot/model/custom/custom_lib.res" id="5_y1ouw"]
+
+[sub_resource type="Resource" id="Resource_d2jrt"]
+metadata/__load_path__ = "res://addons/gdquest_beetle_bot/beetlebot_skin.gd"
 
 [sub_resource type="Animation" id="Animation_bret7"]
 resource_name = "Bob"
@@ -1948,12 +1950,12 @@ tracks/53/keys = PackedFloat32Array(0, 1, 1, 1, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w6t5q"]
 _data = {
-"Bob": SubResource("Animation_bret7"),
-"RESET": SubResource("Animation_j0ypl"),
-"headbutt": SubResource("Animation_28veb"),
-"idle": SubResource("Animation_t1ls0"),
-"poweroff": SubResource("Animation_wdoh2"),
-"walk": SubResource("Animation_gd1qa")
+&"Bob": SubResource("Animation_bret7"),
+&"RESET": SubResource("Animation_j0ypl"),
+&"headbutt": SubResource("Animation_28veb"),
+&"idle": SubResource("Animation_t1ls0"),
+&"poweroff": SubResource("Animation_wdoh2"),
+&"walk": SubResource("Animation_gd1qa")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tvll1"]
@@ -2060,7 +2062,7 @@ node_connections = [&"output", 0, &"StateMachine"]
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_qj0j4"]
 
 [node name="BeetlebotSkin" type="Node3D"]
-script = ExtResource("1_gujli")
+script = SubResource("Resource_d2jrt")
 
 [node name="beetle_bot" parent="." instance=ExtResource("1_r7amh")]
 

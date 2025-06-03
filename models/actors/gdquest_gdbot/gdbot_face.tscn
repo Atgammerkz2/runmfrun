@@ -1,12 +1,14 @@
 [gd_scene load_steps=14 format=3 uid="uid://dvy2nao23i4rl"]
 
-[ext_resource type="Script" path="res://addons/gdquest_gdbot/gdbot_face.gd" id="1_g7fgr"]
-[ext_resource type="Texture2D" uid="uid://cbp882a2a27qw" path="res://addons/gdquest_gdbot/texture/parts/eye_happy.png" id="2_fa0xy"]
-[ext_resource type="Texture2D" uid="uid://blacn6s3yc88h" path="res://addons/gdquest_gdbot/texture/parts/eye_open.png" id="2_qfyd4"]
-[ext_resource type="Texture2D" uid="uid://dt0veafbpw6ih" path="res://addons/gdquest_gdbot/texture/parts/eye_spiral.png" id="3_rdwvm"]
-[ext_resource type="Texture2D" uid="uid://blet3qwl4cbi3" path="res://addons/gdquest_gdbot/texture/parts/smile.png" id="3_xjkgv"]
-[ext_resource type="Texture2D" uid="uid://b37rqx42rwpv" path="res://addons/gdquest_gdbot/texture/parts/open_mouth.png" id="4_wxn47"]
-[ext_resource type="Texture2D" uid="uid://b3b243yxcn5vq" path="res://addons/gdquest_gdbot/texture/parts/eye_close.png" id="6_rog2n"]
+[ext_resource type="Texture2D" uid="uid://cbp882a2a27qw" path="res://models/actors/gdquest_gdbot/texture/parts/eye_happy.png" id="2_fa0xy"]
+[ext_resource type="Texture2D" uid="uid://blacn6s3yc88h" path="res://models/actors/gdquest_gdbot/texture/parts/eye_open.png" id="2_qfyd4"]
+[ext_resource type="Texture2D" uid="uid://dt0veafbpw6ih" path="res://models/actors/gdquest_gdbot/texture/parts/eye_spiral.png" id="3_rdwvm"]
+[ext_resource type="Texture2D" uid="uid://blet3qwl4cbi3" path="res://models/actors/gdquest_gdbot/texture/parts/smile.png" id="3_xjkgv"]
+[ext_resource type="Texture2D" uid="uid://b37rqx42rwpv" path="res://models/actors/gdquest_gdbot/texture/parts/open_mouth.png" id="4_wxn47"]
+[ext_resource type="Texture2D" uid="uid://b3b243yxcn5vq" path="res://models/actors/gdquest_gdbot/texture/parts/eye_close.png" id="6_rog2n"]
+
+[sub_resource type="Resource" id="Resource_wi7pe"]
+metadata/__load_path__ = "res://addons/gdquest_gdbot/gdbot_face.gd"
 
 [sub_resource type="Animation" id="Animation_33is7"]
 length = 0.001
@@ -330,15 +332,15 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l5i24"]
 _data = {
-"RESET": SubResource("Animation_33is7"),
-"dizzy": SubResource("Animation_ne3is"),
-"happy": SubResource("Animation_ttnon"),
-"look_around": SubResource("Animation_rbq53"),
-"sleepy": SubResource("Animation_4tctg")
+&"RESET": SubResource("Animation_33is7"),
+&"dizzy": SubResource("Animation_ne3is"),
+&"happy": SubResource("Animation_ttnon"),
+&"look_around": SubResource("Animation_rbq53"),
+&"sleepy": SubResource("Animation_4tctg")
 }
 
 [node name="GDbotFace" type="Node2D"]
-script = ExtResource("1_g7fgr")
+script = SubResource("Resource_wi7pe")
 
 [node name="BG" type="ColorRect" parent="."]
 offset_left = -144.0

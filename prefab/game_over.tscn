@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dgxqylswsrorh"]
 
-[ext_resource type="Shader" path="res://shaders/menu.gdshader" id="1_mbwsk"]
-[ext_resource type="Script" path="res://script/game_over.gd" id="1_swe8n"]
+[ext_resource type="Shader" uid="uid://bu3tn1faaijqr" path="res://shaders/menu.gdshader" id="1_mbwsk"]
+[ext_resource type="Script" uid="uid://crgemk05ieiqv" path="res://script/game_over.gd" id="1_swe8n"]
 [ext_resource type="FontFile" uid="uid://bm4yvlwukfrwy" path="res://font/LuckiestGuy-Regular.ttf" id="2_ovdrq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uttun"]

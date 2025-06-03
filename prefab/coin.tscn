@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://btmik8ognggaj"]
 
 [ext_resource type="PackedScene" uid="uid://c8hbag45mvews" path="res://models/assets/godot_coin.glb" id="1_jvo0r"]
-[ext_resource type="Script" path="res://script/coin.gd" id="1_lfn6i"]
+[ext_resource type="Script" uid="uid://dc0lqyocfx8nv" path="res://script/coin.gd" id="1_lfn6i"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6hugo"]
 height = 0.3

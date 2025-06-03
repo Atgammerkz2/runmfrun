@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://1ysga1taian6"]
 
-[ext_resource type="Script" path="res://script/terrain.gd" id="1_n022r"]
+[ext_resource type="Script" uid="uid://doudkcp00w8yh" path="res://script/terrain.gd" id="1_n022r"]
 [ext_resource type="MeshLibrary" uid="uid://cqiuj7ymqwls8" path="res://mesh_library.tres" id="1_xvku5"]
 [ext_resource type="PackedScene" uid="uid://btmik8ognggaj" path="res://prefab/coin.tscn" id="2_r07xj"]
 

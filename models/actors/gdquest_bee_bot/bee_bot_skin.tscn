@@ -1,11 +1,13 @@
 [gd_scene load_steps=36 format=3 uid="uid://482rxnrhe64v"]
 
-[ext_resource type="PackedScene" uid="uid://d0gfx2lihdq44" path="res://addons/gdquest_bee_bot/bee_bot.glb" id="1_ehj7o"]
-[ext_resource type="Script" path="res://addons/gdquest_bee_bot/bee_bot_skin.gd" id="1_vvvv8"]
-[ext_resource type="Material" uid="uid://bww7by8cvcuoe" path="res://addons/gdquest_bee_bot/materials/bee_bot_lights_mat.tres" id="3_7rf2o"]
-[ext_resource type="Material" uid="uid://dx8xfrepk0a68" path="res://addons/gdquest_bee_bot/materials/bee_bot_eyes_mat.tres" id="4_76kpj"]
-[ext_resource type="Material" uid="uid://cruyb7vmbaabx" path="res://addons/gdquest_bee_bot/materials/bee_bot_wings_mat.tres" id="5_uomwq"]
-[ext_resource type="AnimationLibrary" uid="uid://rb3v0562tes3" path="res://addons/gdquest_bee_bot/custom_animations/custom_lib.res" id="6_6725d"]
+[ext_resource type="PackedScene" uid="uid://d0gfx2lihdq44" path="res://models/actors/gdquest_bee_bot/bee_bot.glb" id="1_ehj7o"]
+[ext_resource type="Material" uid="uid://bww7by8cvcuoe" path="res://models/actors/gdquest_bee_bot/materials/bee_bot_lights_mat.tres" id="3_7rf2o"]
+[ext_resource type="Material" uid="uid://dx8xfrepk0a68" path="res://models/actors/gdquest_bee_bot/materials/bee_bot_eyes_mat.tres" id="4_76kpj"]
+[ext_resource type="Material" uid="uid://cruyb7vmbaabx" path="res://models/actors/gdquest_bee_bot/materials/bee_bot_wings_mat.tres" id="5_uomwq"]
+[ext_resource type="AnimationLibrary" uid="uid://rb3v0562tes3" path="res://models/actors/gdquest_bee_bot/custom_animations/custom_lib.res" id="6_6725d"]
+
+[sub_resource type="Resource" id="Resource_x1ukn"]
+metadata/__load_path__ = "res://addons/gdquest_bee_bot/bee_bot_skin.gd"
 
 [sub_resource type="Animation" id="Animation_ookjt"]
 resource_name = "Idle"
@@ -1214,11 +1216,11 @@ tracks/40/keys = PackedFloat32Array(0, 1, -9.19819e-09, -5.55632e-10, -0.0252876
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5iwik"]
 _data = {
-"Idle": SubResource("Animation_ookjt"),
-"RESET": SubResource("Animation_lfeqv"),
-"head_movement": SubResource("Animation_3el4i"),
-"power_off": SubResource("Animation_261on"),
-"spit_attack": SubResource("Animation_6guba")
+&"Idle": SubResource("Animation_ookjt"),
+&"RESET": SubResource("Animation_lfeqv"),
+&"head_movement": SubResource("Animation_3el4i"),
+&"power_off": SubResource("Animation_261on"),
+&"spit_attack": SubResource("Animation_6guba")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cglxu"]
@@ -1333,7 +1335,7 @@ node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="BeebotSkin" type="Node3D"]
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
-script = ExtResource("1_vvvv8")
+script = SubResource("Resource_x1ukn")
 
 [node name="bee_bot" parent="." instance=ExtResource("1_ehj7o")]
 
