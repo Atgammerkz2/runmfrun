@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RunMFRun"
-run/main_scene="res://world.tscn"
+run/main_scene="uid://cqby4o40u1d8w"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -84,6 +84,7 @@ jump={
 
 [input_devices]
 
+sensors/enable_gyroscope=true
 pointing/emulate_touch_from_mouse=true
 
 [rendering]

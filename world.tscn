@@ -23,12 +23,12 @@
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yfrrh"]
 panorama = ExtResource("1_n6ojx")
 
-[sub_resource type="Sky" id="Sky_eoupn"]
+[sub_resource type="Sky" id="Sky_cbp6q"]
 sky_material = SubResource("PanoramaSkyMaterial_yfrrh")
 
 [sub_resource type="Environment" id="Environment_0imuc"]
 background_mode = 2
-sky = SubResource("Sky_eoupn")
+sky = SubResource("Sky_cbp6q")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6cwnj"]
 radius = 0.274315
