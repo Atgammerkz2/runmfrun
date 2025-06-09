@@ -24,7 +24,7 @@ Button/styles/hover = SubResource("StyleBoxEmpty_41duf")
 Button/styles/normal = SubResource("StyleBoxEmpty_62g3f")
 Button/styles/pressed = SubResource("StyleBoxEmpty_yo8ak")
 
-[node name="GameOver" type="CanvasLayer"]
+[node name="MainMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_2rd37")
 
@@ -36,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="menu_gameover" type="VBoxContainer" parent="."]
+[node name="menu" type="VBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,7 +51,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="iniciar_btn" type="Button" parent="menu_gameover"]
+[node name="iniciar_btn" type="Button" parent="menu"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = SubResource("Theme_jdptx")
@@ -59,7 +59,7 @@ theme_override_fonts/font = ExtResource("3_ojlpm")
 theme_override_font_sizes/font_size = 48
 text = "Iniciar Jogo"
 
-[node name="sair_btn" type="Button" parent="menu_gameover"]
+[node name="sair_btn" type="Button" parent="menu"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = SubResource("Theme_jdptx")
@@ -67,5 +67,5 @@ theme_override_fonts/font = ExtResource("3_ojlpm")
 theme_override_font_sizes/font_size = 48
 text = "Sair do Jogo"
 
-[connection signal="pressed" from="menu_gameover/iniciar_btn" to="." method="_on_iniciar_btn_pressed"]
-[connection signal="pressed" from="menu_gameover/sair_btn" to="." method="_on_sair_btn_pressed"]
+[connection signal="pressed" from="menu/iniciar_btn" to="." method="_on_iniciar_btn_pressed"]
+[connection signal="pressed" from="menu/sair_btn" to="." method="_on_sair_btn_pressed"]

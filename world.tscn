@@ -36,34 +36,6 @@ height = 1.66566
 
 [node name="World" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_0imuc")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.145875, 0.989303, 0, -0.989303, 0.145875, 0, 2.5267, 6.6789)
-shadow_enabled = true
-
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59715, 2.70568, -2.08714)
-script = ExtResource("1_r5yp8")
-
-[node name="Colisao_Player" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(0.999633, 0, -0.0270842, 0, 1, 0, 0.0270842, 0, 0.999633, 0, 0.794155, 0)
-shape = SubResource("CapsuleShape3D_6cwnj")
-
-[node name="gdbot" parent="Player" instance=ExtResource("1_yykbg")]
-transform = Transform3D(-0.989344, 0, 0.1456, 0, 1, 0, -0.1456, 0, -0.989344, 0, 0, 0)
-
-[node name="CardboardVRCamera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61846, 4.02456)
-script = ExtResource("19_cbp6q")
-RotateParent = false
-EyesSeparation = 0.5
-metadata/_custom_type_script = "uid://s5ugrpk4rfw4"
-
-[node name="TerrainController" parent="." instance=ExtResource("4_taniw")]
-terrain_block_scenes = Array[PackedScene]([ExtResource("9_yu1oe"), ExtResource("7_bf68j"), ExtResource("8_og6mr"), ExtResource("9_wllgb"), ExtResource("10_ee0ap")])
-
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -123,6 +95,7 @@ text = "0"
 vertical_alignment = 1
 
 [node name="controls" type="CanvasLayer" parent="HUD"]
+visible = false
 
 [node name="btn_left" type="TouchScreenButton" parent="HUD/controls"]
 position = Vector2(11, 454)
@@ -143,6 +116,35 @@ scale = Vector2(5.03125, 5.5625)
 texture_normal = ExtResource("15_xqlml")
 texture_pressed = ExtResource("16_j27tb")
 action = "move_right"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0imuc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.145875, 0.989303, 0, -0.989303, 0.145875, 0, 2.5267, 6.6789)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59715, 2.70568, -2.08714)
+script = ExtResource("1_r5yp8")
+
+[node name="Colisao_Player" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(0.999633, 0, -0.0270842, 0, 1, 0, 0.0270842, 0, 0.999633, 0, 0.794155, 0)
+shape = SubResource("CapsuleShape3D_6cwnj")
+
+[node name="gdbot" parent="Player" instance=ExtResource("1_yykbg")]
+transform = Transform3D(-0.989344, 0, 0.1456, 0, 1, 0, -0.1456, 0, -0.989344, 0, 0, 0)
+
+[node name="CardboardVRCamera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61846, 4.02456)
+script = ExtResource("19_cbp6q")
+UseGysroscope = false
+RotateParent = false
+EyesSeparation = 0.5
+metadata/_custom_type_script = "uid://s5ugrpk4rfw4"
+
+[node name="TerrainController" parent="." instance=ExtResource("4_taniw")]
+terrain_block_scenes = Array[PackedScene]([ExtResource("9_yu1oe"), ExtResource("7_bf68j"), ExtResource("8_og6mr"), ExtResource("9_wllgb"), ExtResource("10_ee0ap")])
 
 [node name="GameOver" parent="." instance=ExtResource("8_c3chk")]
 visible = false

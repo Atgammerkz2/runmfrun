@@ -1,29 +1,48 @@
 extends CharacterBody3D
 
-
-const SPEED = 300.0
+const SPEED = 5.0
 const JUMP_VELOCITY = 10.0
+const GYRO_SENSITIVITY = 0.1
+
 @onready var animator = get_node("gdbot/AnimationPlayer") as AnimationPlayer
 @onready var coins_container: HBoxContainer = $"../HUD/coins_container"
 var coins := 0
 var is_dead := false
+
+var _gravity_vector = Vector3.ZERO
+var _tilt_threshold = 0.3
 
 #@export var view : Node3D
 var gravity = 0
 var movement_velocity: Vector3
 var rotation_direction: float
 
+func _ready():
+	Input.set_use_accumulated_input(true)
+
+func detectarMovimento(delta: float) -> void:
+	var accel = Input.get_accelerometer()
+	var tilt = accel.x / 9.81  # Normaliza pela gravidade terrestre
+	
+	# Filtro para suavizar
+	tilt = lerp(movement_velocity.x / SPEED, tilt, delta * 10)
+	
+	# Aplica movimento
+	movement_velocity.x = tilt * SPEED
+
 func _physics_process(delta: float) -> void:
+	detectarMovimento(delta)
 	handle_input(delta)
 	apply_gravity(delta)
 	jump(delta)
 	handle_animations()
 	
-	var applied_velocity: Vector3
-	applied_velocity = velocity.lerp(movement_velocity, delta * 10)
+	# Combina todas as velocidades
+	var applied_velocity = Vector3.ZERO
+	applied_velocity += movement_velocity
 	applied_velocity.y = -gravity
-	velocity = applied_velocity
 	
+	velocity = applied_velocity
 	move_and_slide()
 	
 	#if Vector2(velocity.z, velocity.x).length() > 0:
