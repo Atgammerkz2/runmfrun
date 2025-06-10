@@ -5,7 +5,7 @@ const FORWARD_SPEED = 0.5
 const JUMP_VELOCITY = 10.0
 
 # --- Variáveis para Gestos ---
-const JUMP_GESTURE_THRESHOLD = 15.0
+const JUMP_GESTURE_THRESHOLD = 5.0
 const SWIPE_GESTURE_THRESHOLD = 1.0
 var can_jump_gesture = true
 var can_swipe_gesture = true
@@ -18,7 +18,8 @@ var target_x_position = 0.0
 # --------------------------------------------------------
 
 @onready var animator = get_node("gdbot/AnimationPlayer") as AnimationPlayer
-@onready var coins_container: HBoxContainer = $"../HUD/coins_container"
+@export var hud: HUD
+
 var coins := 0
 var is_dead := false
 
@@ -28,6 +29,7 @@ func _ready():
 	Input.set_use_accumulated_input(true)
 	$JumpGestureCooldown.connect("timeout", _on_JumpGestureCooldown_timeout)
 	$SwipeGestureCooldown.connect("timeout", _on_SwipeGestureCooldown_timeout)
+	update_coin_display()
 
 func detectar_gestos():
 	# Gesto de Pulo
@@ -112,10 +114,14 @@ func jump():
 		
 func collect_coins():
 	coins += 1
-	coins_container.update_coin(coins)
+	update_coin_display()
 
 func _on_JumpGestureCooldown_timeout():
 	can_jump_gesture = true
 
 func _on_SwipeGestureCooldown_timeout():
 	can_swipe_gesture = true
+	
+func update_coin_display():
+	if hud:
+		hud.update_coin(coins)

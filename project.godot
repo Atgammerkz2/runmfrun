@@ -14,7 +14,7 @@ modules="org/godotengine/godot/GodotSensorManager"
 
 [application]
 
-config/name="RunMFRun"
+config/name="TiltRun"
 run/main_scene="uid://cqby4o40u1d8w"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

@@ -1,23 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6ebt8ihnhveb"]
+[gd_scene load_steps=20 format=3 uid="uid://b6ebt8ihnhveb"]
 
 [ext_resource type="Texture2D" uid="uid://ccwws701r70t2" path="res://models/skybox.jpg" id="1_n6ojx"]
 [ext_resource type="Script" uid="uid://c3plxv74lsy0k" path="res://script/player.gd" id="1_r5yp8"]
 [ext_resource type="PackedScene" uid="uid://c4fba1hyqkstw" path="res://models/actors/gdquest_gdbot/gdbot.glb" id="1_yykbg"]
-[ext_resource type="PackedScene" uid="uid://btmik8ognggaj" path="res://prefab/coin.tscn" id="4_awvla"]
 [ext_resource type="PackedScene" uid="uid://jiypjky1ack4" path="res://terrain_controller.tscn" id="4_taniw"]
-[ext_resource type="Script" uid="uid://cpjm0tntniif0" path="res://script/coins_container.gd" id="5_30rer"]
+[ext_resource type="PackedScene" uid="uid://b1ti0y2te4g8x" path="res://prefab/hud.tscn" id="5_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://b245kralgy0k8" path="res://models/terrain_blocks/terrain_1.tscn" id="7_bf68j"]
-[ext_resource type="FontFile" uid="uid://bm4yvlwukfrwy" path="res://font/LuckiestGuy-Regular.ttf" id="7_tkt8q"]
 [ext_resource type="PackedScene" uid="uid://dgxqylswsrorh" path="res://prefab/game_over.tscn" id="8_c3chk"]
 [ext_resource type="PackedScene" uid="uid://cvb328e726u34" path="res://models/terrain_blocks/terrain_2.tscn" id="8_og6mr"]
 [ext_resource type="PackedScene" uid="uid://ilox14xe455v" path="res://models/terrain_blocks/terrain_3.tscn" id="9_wllgb"]
 [ext_resource type="PackedScene" uid="uid://1ysga1taian6" path="res://models/terrain_blocks/terrain_0.tscn" id="9_yu1oe"]
 [ext_resource type="PackedScene" uid="uid://dpdetbjc5g56s" path="res://models/terrain_blocks/terrain_4.tscn" id="10_ee0ap"]
-[ext_resource type="Texture2D" uid="uid://b2pwgquh4l423" path="res://models/assets/Buttons/ui_buttons_arrow_left_NORMAL.png" id="13_wglpa"]
-[ext_resource type="Texture2D" uid="uid://cob6mp0kb41c8" path="res://models/assets/Buttons/ui_buttons_arrow_left_PRESSED.png" id="14_2ru1k"]
-[ext_resource type="Texture2D" uid="uid://cf37fbawniu2n" path="res://models/assets/Buttons/ui_jump_transparent.png" id="15_heva6"]
-[ext_resource type="Texture2D" uid="uid://dgtnd502hc64h" path="res://models/assets/Buttons/ui_buttons_arrow_right_NORMAL.png" id="15_xqlml"]
-[ext_resource type="Texture2D" uid="uid://cjnfu2tnu7y2y" path="res://models/assets/Buttons/ui_buttons_arrow_right_PRESSED.png" id="16_j27tb"]
 [ext_resource type="Script" uid="uid://s5ugrpk4rfw4" path="res://addons/cardboard_vr/scripts/cardboard_vr_camera.gd" id="19_cbp6q"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yfrrh"]
@@ -34,88 +27,20 @@ sky = SubResource("Sky_cbp6q")
 radius = 0.274315
 height = 1.66566
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_k3n1d"]
+viewport_path = NodePath("Player/CardboardVRCamera3D/HUD_Display/UI_Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2o6r5"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_k3n1d")
+
+[sub_resource type="QuadMesh" id="QuadMesh_70uel"]
+resource_local_to_scene = true
+center_offset = Vector3(0, 0, -2)
+
 [node name="World" type="Node3D"]
-
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="coins_container" type="HBoxContainer" parent="HUD"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -255.0
-offset_bottom = 96.0
-grow_horizontal = 0
-script = ExtResource("5_30rer")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HUD/coins_container"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="HUD/coins_container/SubViewportContainer"]
-own_world_3d = true
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(96, 96)
-render_target_update_mode = 4
-
-[node name="coin_holder" type="Node3D" parent="HUD/coins_container/SubViewportContainer/SubViewport"]
-
-[node name="coin" parent="HUD/coins_container/SubViewportContainer/SubViewport/coin_holder" instance=ExtResource("4_awvla")]
-
-[node name="Camera3D" type="Camera3D" parent="HUD/coins_container/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.27373)
-current = true
-fov = 20.0
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HUD/coins_container/SubViewportContainer/SubViewport"]
-
-[node name="coin_label" type="Label" parent="HUD"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -140.0
-offset_top = 6.0
-offset_right = 7.0
-offset_bottom = 108.0
-grow_horizontal = 0
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("7_tkt8q")
-theme_override_font_sizes/font_size = 64
-text = "0"
-vertical_alignment = 1
-
-[node name="controls" type="CanvasLayer" parent="HUD"]
-visible = false
-
-[node name="btn_left" type="TouchScreenButton" parent="HUD/controls"]
-position = Vector2(11, 454)
-scale = Vector2(5.03125, 5.5625)
-texture_normal = ExtResource("13_wglpa")
-texture_pressed = ExtResource("14_2ru1k")
-action = "move_left"
-
-[node name="btn_left2" type="TouchScreenButton" parent="HUD/controls"]
-position = Vector2(203, 456)
-scale = Vector2(23.5625, 5.5625)
-texture_normal = ExtResource("15_heva6")
-action = "jump"
-
-[node name="btn_right" type="TouchScreenButton" parent="HUD/controls"]
-position = Vector2(975, 454)
-scale = Vector2(5.03125, 5.5625)
-texture_normal = ExtResource("15_xqlml")
-texture_pressed = ExtResource("16_j27tb")
-action = "move_right"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0imuc")
@@ -124,24 +49,35 @@ environment = SubResource("Environment_0imuc")
 transform = Transform3D(1, 0, 0, 0, 0.145875, 0.989303, 0, -0.989303, 0.145875, 0, 2.5267, 6.6789)
 shadow_enabled = true
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("hud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59715, 2.70568, -2.08714)
 script = ExtResource("1_r5yp8")
+hud = NodePath("CardboardVRCamera3D/HUD_Display/UI_Viewport/HUD")
 
 [node name="Colisao_Player" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(0.999633, 0, -0.0270842, 0, 1, 0, 0.0270842, 0, 0.999633, 0, 0.794155, 0)
 shape = SubResource("CapsuleShape3D_6cwnj")
 
 [node name="gdbot" parent="Player" instance=ExtResource("1_yykbg")]
-transform = Transform3D(-0.989344, 0, 0.1456, 0, 1, 0, -0.1456, 0, -0.989344, 0, 0, 0)
+transform = Transform3D(-0.989344, 0, 0.1456, 0, 1, 0, -0.1456, 0, -0.989344, 0, 0, 0.213563)
 
 [node name="CardboardVRCamera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61846, 4.02456)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61846, 2.56185)
 script = ExtResource("19_cbp6q")
 UseGysroscope = false
 RotateParent = false
-EyesSeparation = 0.5
+EyesSeparation = 0.25
 metadata/_custom_type_script = "uid://s5ugrpk4rfw4"
+
+[node name="HUD_Display" type="MeshInstance3D" parent="Player/CardboardVRCamera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.678855, -1.55179, -1.56757)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = SubResource("QuadMesh_70uel")
+
+[node name="UI_Viewport" type="SubViewport" parent="Player/CardboardVRCamera3D/HUD_Display"]
+transparent_bg = true
+
+[node name="HUD" parent="Player/CardboardVRCamera3D/HUD_Display/UI_Viewport" instance=ExtResource("5_k3n1d")]
 
 [node name="JumpGestureCooldown" type="Timer" parent="Player"]
 wait_time = 0.7
