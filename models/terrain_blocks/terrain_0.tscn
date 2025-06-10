@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://1ysga1taian6"]
+[gd_scene load_steps=6 format=3 uid="uid://1ysga1taian6"]
 
 [ext_resource type="Script" uid="uid://doudkcp00w8yh" path="res://script/terrain.gd" id="1_n022r"]
 [ext_resource type="MeshLibrary" uid="uid://cqiuj7ymqwls8" path="res://mesh_library.tres" id="1_xvku5"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_20r6s"]
 size = Vector2(10, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dn816"]
+size = Vector3(1, 1, 1.04395)
 
 [node name="terrain_0" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_20r6s")
@@ -34,3 +37,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48783, 2.8079, -4.15274)
 
 [node name="coin5" parent="." instance=ExtResource("2_r07xj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48783, 2.8079, -5.49398)
+
+[node name="Lateral1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149308, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lateral1"]
+transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 20, 4.11077, 3.55561, 3.33209)
+shape = SubResource("BoxShape3D_dn816")
+
+[node name="Lateral2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.09027, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lateral2"]
+transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 20, 4.11077, 3.55561, 3.33209)
+shape = SubResource("BoxShape3D_dn816")
